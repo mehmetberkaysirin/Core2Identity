@@ -30,7 +30,15 @@ namespace Core2Identity
             services.AddDbContext<ApplicationIdentityDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionStrings")));
 
-            services.AddIdentity<ApplicationUSer, IdentityRole>()
+
+            services.AddIdentity<ApplicationUSer, IdentityRole>(options=>
+            {
+                options.Password.RequiredLength = 7;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+            })
                 .AddEntityFrameworkStores<ApplicationIdentityDbContext>()
                 .AddDefaultTokenProviders();
 
