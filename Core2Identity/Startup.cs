@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core2Identity.Infrastructure;
 using Core2Identity.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,9 +31,13 @@ namespace Core2Identity
             services.AddDbContext<ApplicationIdentityDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionStrings")));
 
+            services.AddTransient<IPasswordValidator<ApplicationUSer>, CustomPasswordValidator>();
 
             services.AddIdentity<ApplicationUSer, IdentityRole>(options=>
             {
+                options.User.AllowedUserNameCharacters = "abcdefgkldswgr";
+                options.User.RequireUniqueEmail = true;
+
                 options.Password.RequiredLength = 7;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
