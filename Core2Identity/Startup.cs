@@ -32,7 +32,7 @@ namespace Core2Identity
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionStrings")));
 
             services.AddTransient<IPasswordValidator<ApplicationUSer>, CustomPasswordValidator>();
-
+            services.AddTransient<IUserValidator<ApplicationUSer>, CustomUserValidator>();
             services.AddIdentity<ApplicationUSer, IdentityRole>(options=>
             {
                 options.User.AllowedUserNameCharacters = "abcdefgkldswgr";
