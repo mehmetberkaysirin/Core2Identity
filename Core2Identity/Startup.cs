@@ -31,6 +31,9 @@ namespace Core2Identity
             services.AddDbContext<ApplicationIdentityDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionStrings")));
 
+
+
+            //services.ConfigureApplicationCookie(opt => opt.LoginPath = "/Member/Login");
             services.AddTransient<IPasswordValidator<ApplicationUSer>, CustomPasswordValidator>();
             services.AddTransient<IUserValidator<ApplicationUSer>, CustomUserValidator>();
             services.AddIdentity<ApplicationUSer, IdentityRole>(options=>

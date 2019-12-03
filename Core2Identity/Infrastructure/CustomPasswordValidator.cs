@@ -12,14 +12,14 @@ namespace Core2Identity.Infrastructure
         public Task<IdentityResult> ValidateAsync(UserManager<ApplicationUSer> manager, ApplicationUSer user, string password)
         {
             List<IdentityError> errors = new List<IdentityError>();
-            if (password.ToLower().Contains(user.UserName.ToLower()))
-            {
-                errors.Add(new IdentityError()
-                {
-                    Code = "PasswordContainsUserName",
-                    Description = "Password cannot contain username"
-                });
-            }
+          if (password.ToLower().Contains(user.UserName.ToLower()))
+          {
+              errors.Add(new IdentityError()
+              {
+                  Code = "PasswordContainsUserName",
+                  Description = "Password cannot contain username"
+              });
+          }
             if (password.Contains("123"))
             {
                 errors.Add(new IdentityError()

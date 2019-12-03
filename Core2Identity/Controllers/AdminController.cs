@@ -82,7 +82,7 @@ namespace Core2Identity.Controllers
             return View("Index", userManager.Users);
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Update(string Id, string password, string email)
         {
             var user = await userManager.FindByIdAsync(Id);
